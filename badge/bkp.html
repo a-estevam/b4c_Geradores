@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+ <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,200..1000;1,200..1000&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="./badge.css" />
+    <title>Document</title>
+  </head>
+<body>
+
+  <div class="content">
+ <aside>
+     <div class="menu">menu
+
+      <input id="name" type="text" placeholder="Nome">
+      <input id="cargo" type="text" placeholder="cargo">
+
+   <label for="uploadFoto" class="custom-file-upload">
+  Escolher arquivo
+</label>
+<input type="file" id="uploadFoto" accept="image/*" />
+<img id="fotoCracha" width="100" />
+<button id="atualizar">Atualizar</button>
+    </div>
+ </aside>
+
+ 
+    <div class="view view-container">
+      <section class="front zoon">
+        <div class="container">
+          <div class="item corner"></div>
+          <div class="item white"></div>
+          <div class="item corner"></div>
+          <div class="item white"></div>
+          <div class="item blue-area mark">
+            <div class="pitoco mark"></div>
+            <div class="data">
+              <img class="avatar" src="./img/avatar.png" alt="" srcset="">
+             <div class="texto">
+              <h2 class="funcionario">Funcionário</h2>
+             <h3 class="cargofunc">cargo</h3>
+             </div>
+             <img src="./img/brand.png" alt="" srcset="">
+            </div>
+          </div>
+          <div class="item white"></div>
+          <div class="item corner"></div>
+          <div class="item white"></div>
+          <div class="item corner"></div>
+        </div>
+      </section>
+      <section class="back zoon ">
+        <div class="container">
+          <div class="item corner"></div>
+          <div class="item white"></div>
+          <div class="item corner"></div>
+          <div class="item white"></div>
+          <div class="item blue-area mark">
+            <div class="pitoco mark"></div>
+          </div>
+          <div class="item white"></div>
+          <div class="item corner"></div>
+          <div class="item white"></div>
+          <div class="item corner"></div>
+        </div>
+      </section>
+    </div>
+  </div>
+  <script src="./badge.js"></script>
+</body>
+</html>
