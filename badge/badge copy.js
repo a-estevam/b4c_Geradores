@@ -1,25 +1,8 @@
-// ==============================
-// CONFIG LOCALSTORAGE
-// ==============================
-const STORAGE_KEY = "crachaFuncionario";
-
-function salvarNoLocalStorage(dados) {
-  localStorage.setItem(STORAGE_KEY, JSON.stringify(dados));
-}
-
-function lerDoLocalStorage() {
-  return JSON.parse(localStorage.getItem(STORAGE_KEY)) || {};
-}
-
-// ==============================
-// SELETORES
-// ==============================
-
 // Containers e layout
 const containers = document.querySelectorAll(".container");
 const roundCorners = document.querySelectorAll(".blue-area");
 
-// Textos do crachá
+// Textos do crachá (frente e verso)
 const funcionarios = document.querySelectorAll(".funcionario");
 const cargos = document.querySelectorAll(".cargofunc");
 const cpfs = document.querySelectorAll(".CPF");
@@ -30,14 +13,15 @@ const inputCargo = document.querySelector("#cargo");
 const inputCPF = document.querySelector("#CPF");
 const inputAdmissao = document.querySelector("#admisao");
 
+// Botão
+const btnAtualizar = document.querySelector("#atualizar");
+
 // Foto
 const inputFoto = document.querySelector("#uploadFoto");
 const fotoPreview = document.querySelector("#fotoCracha");
 const avatarCracha = document.querySelector(".avatar");
 
-// ==============================
-// MEDIDAS DO CRACHÁ
-// ==============================
+// Medidas do crachá
 const crop = 5;
 const width = 55;
 const height = 85;
@@ -45,14 +29,15 @@ const totalWidth = crop + width + crop;
 const totalHeight = crop + height + crop;
 const bordas = 2;
 
-// Layout do crachá
+// Configuração do grid do crachá
 containers.forEach(container => {
   container.style.width = totalWidth + "mm";
   container.style.height = totalHeight + "mm";
   container.style.gridTemplateColumns = `${crop}mm ${width}mm ${crop}mm`;
   container.style.gridTemplateRows = `${crop}mm ${height}mm ${crop}mm`;
 
-  container.querySelectorAll(".corner").forEach(corner => {
+  const corners = container.querySelectorAll(".corner");
+  corners.forEach(corner => {
     corner.style.width = crop + "mm";
     corner.style.height = crop + "mm";
   });
@@ -63,62 +48,6 @@ roundCorners.forEach(area => {
   area.style.borderRadius = `${bordas}mm`;
 });
 
-// ==============================
-// FUNÇÕES PRINCIPAIS
-// ==============================
-
-function coletarDados() {
-  return {
-    nome: inputNome.value.toLocaleLowerCase(),
-    cargo: inputCargo.value.toLocaleLowerCase(),
-    cpf: inputCPF.value,
-    admissao: inputAdmissao.value,
-    foto: fotoPreview.src || ""
-  };
-}
-
-function atualizarCracha(dados) {
-  funcionarios.forEach(el => {
-    el.textContent = dados.nome || "Funcionário";
-  });
-
-  cargos.forEach(el => {
-    el.textContent = dados.cargo || "Cargo";
-  });
-
-  cpfs.forEach(el => {
-    el.textContent = dados.cpf || "000.000.000-00";
-  });
-
-  if (dados.admissao) {
-    const dataFormatada = new Date(dados.admissao)
-      .toLocaleDateString("pt-BR");
-
-    document.querySelectorAll(".dataAdmissao")?.forEach(el => {
-      el.textContent = dataFormatada;
-    });
-  }
-
-  if (dados.foto) {
-    fotoPreview.src = dados.foto;
-    avatarCracha.src = dados.foto;
-  }
-}
-
-function salvarEAtualizar() {
-  const dados = coletarDados();
-  salvarNoLocalStorage(dados);
-  atualizarCracha(dados);
-}
-
-// ==============================
-// EVENTOS DOS INPUTS (AUTO)
-// ==============================
-
-[inputNome, inputCargo, inputCPF, inputAdmissao].forEach(input => {
-  input.addEventListener("input", salvarEAtualizar);
-});
-
 // Upload da foto
 inputFoto.addEventListener("change", event => {
   const arquivo = event.target.files[0];
@@ -126,32 +55,46 @@ inputFoto.addEventListener("change", event => {
 
   const reader = new FileReader();
   reader.onload = e => {
-    const dados = lerDoLocalStorage();
-    dados.foto = e.target.result;
-
-    salvarNoLocalStorage(dados);
-    atualizarCracha(dados);
+    fotoPreview.src = e.target.result;
+    avatarCracha.src = e.target.result;
   };
   reader.readAsDataURL(arquivo);
 });
 
-// ==============================
-// RESTAURA AO CARREGAR
-// ==============================
-document.addEventListener("DOMContentLoaded", () => {
-  const dadosSalvos = lerDoLocalStorage();
+// Atualizar crachá
+btnAtualizar.addEventListener("click", () => {
+  // Nome
+  funcionarios.forEach(el => {
+    el.textContent = inputNome.value.toLocaleLowerCase() || "Funcionário";
+  });
 
-  inputNome.value = dadosSalvos.nome || "";
-  inputCargo.value = dadosSalvos.cargo || "";
-  inputCPF.value = dadosSalvos.cpf || "";
-  inputAdmissao.value = dadosSalvos.admissao || "";
+  // Cargo
+  cargos.forEach(el => {
+    el.textContent = inputCargo.value.toLocaleLowerCase() || "Cargo";
+  });
 
-  atualizarCracha(dadosSalvos);
+  // CPF
+  cpfs.forEach(el => {
+    el.textContent = inputCPF.value || "000.000.000-00";
+  });
+
+  // Data de admissão
+  if (inputAdmissao.value) {
+    const dataFormatada = new Date(inputAdmissao.value)
+      .toLocaleDateString("pt-BR");
+
+    document.querySelectorAll(".dataAdmissao")?.forEach(el => {
+      el.textContent = dataFormatada;
+    });
+  }
 });
 
-// ==============================
-// GERAR PDF
-// ==============================
+
+// teste
+// teste
+// teste
+
+
 const { jsPDF } = window.jspdf;
 
 document.querySelector("#downloadPdf").addEventListener("click", async () => {
@@ -169,21 +112,28 @@ document.querySelector("#downloadPdf").addEventListener("click", async () => {
   for (let i = 0; i < blueAreas.length; i++) {
     const area = blueAreas[i];
 
+    // 🔹 Clonar para não alterar o layout original
     const clone = area.cloneNode(true);
     clone.style.width = `${largura}cm`;
     clone.style.height = `${altura}cm`;
+    clone.style.margin = "0";
     clone.style.position = "fixed";
     clone.style.top = "-9999px";
     clone.style.left = "-9999px";
 
     // 🔵 CORREÇÃO DO PITÔCO
+    // Pega a cor real da blue-area original
     const blueComputedColor = getComputedStyle(area).backgroundColor;
-    clone.querySelectorAll(".pitoco").forEach(p => {
+
+    // Força essa cor em todos os .pitoco do clone
+    const pitocos = clone.querySelectorAll(".pitoco");
+    pitocos.forEach(p => {
       p.style.backgroundColor = blueComputedColor;
     });
 
     document.body.appendChild(clone);
 
+    // 🔹 Renderização em alta resolução (~300 DPI)
     const canvas = await html2canvas(clone, {
       scale: 4,
       useCORS: true,
@@ -194,7 +144,9 @@ document.querySelector("#downloadPdf").addEventListener("click", async () => {
 
     const imgData = canvas.toDataURL("image/jpeg", 1.0);
 
-    if (i > 0) pdf.addPage([largura, altura]);
+    if (i > 0) {
+      pdf.addPage([largura, altura]);
+    }
 
     pdf.addImage(imgData, "JPEG", 0, 0, largura, altura);
   }
@@ -204,5 +156,5 @@ document.querySelector("#downloadPdf").addEventListener("click", async () => {
       .replace(/\s+/g, "_")
       .toLowerCase();
 
-  pdf.save(`cracha_${nomeArquivo}.pdf`);
+  pdf.save(`cracha_blue-area_${nomeArquivo}.pdf`);
 });
