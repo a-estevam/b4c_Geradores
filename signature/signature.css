@@ -39,10 +39,12 @@ main {
     max-width: 600px;
     height: 70px;
     background:
-        linear-gradient(var(--color-neutral-gray-light) 0 0) 0 0 / 100% 12px no-repeat,
-        linear-gradient(var(--color-neutral-gray-light) 0 0) 0 20px / 100% 12px no-repeat,
-        linear-gradient(var(--color-neutral-gray-light) 0 0) 0 40px / 100% 12px no-repeat,
-        linear-gradient(var(--color-neutral-gray-light) 0 0) 0 60px / 100% 12px no-repeat;
+       linear-gradient(var(--color-neutral-gray-light) 0 0) 0 0 / 100% 12px no-repeat,
+        linear-gradient(var(--color-neutral-gray-light) 0 0) 0 20px / 90% 12px no-repeat,
+        linear-gradient(var(--color-neutral-gray-light) 0 0) 0 40px / 95% 12px no-repeat,
+        linear-gradient(var(--color-neutral-gray-light) 0 0) 0 60px / 85% 12px no-repeat,
+        linear-gradient(var(--color-neutral-gray-light) 0 0) 0 80px / 70% 12px no-repeat;
+
 
 }
 
