@@ -29,3 +29,17 @@ img {
 img:hover {
     transform: scale(1.03);
 }
+
+
+header{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    margin-top: 40px;
+}
+
+h2{
+    font-weight: lighter;
+    font-size: 40px;
+}
