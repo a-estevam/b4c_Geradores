@@ -1,30 +1,211 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="style.css">
-    <title>home</title>
-</head>
-<body>
-    <header>
-        <h2>geradores brain4care</h2>
-    </header>
-   <div class="content">
-     <main>
-        <a href="signature/index.html">
-            <img src="./img/mkp_email.png" alt="" srcset="">
-        </a>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,200..1000;1,200..1000&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="signature.css" />
+    <title>Assinatura de email - signature</title>
+  </head>
 
-        <a href="badge/index.html">
-            <img src="./img/mkp_cracha.png" alt="" srcset="">
-        </a>
+  <body>
+    <div class="layout">
+      <aside>
+        <div class="campo">
+          <label for="nome">Nome</label>
+          <input type="text" id="nome" name="nome" />
+        </div>
 
-        <a href="">
-            <img src="./img/mkp_cartao.png" alt="" srcset="">
-        </a>
-    </main>
-   </div>
-    
-</body>
+        <div class="campo">
+          <label for="cargo">Cargo</label>
+          <input type="text" id="cargo" name="cargo" />
+        </div>
+
+        <div class="campo">
+          <label for="email">E-mail</label>
+          <input type="email" id="email" name="email" />
+        </div>
+
+        <div class="campo">
+          <label for="celular">Celular</label>
+          <input type="tel" id="celular" name="celular" />
+        </div>
+
+        <select id="local">
+          <option value="">Selecione um local</option>
+          <option value="São Carlos">São Carlos</option>
+          <option value="São Paulo">São Paulo</option>
+          <option value="Geórgia">Geórgia</option>
+        </select>
+        <br>
+
+        <button id="copiarAssinatura">Copiar assinatura</button>
+        <a id="voltar" href="https://docs.google.com/document/d/1XlurSeRrSTArd6TAYW2E0qSzpqCv-U_JRjcUE2K17o4/edit?usp=drive_link"  target="_blank"><button>como instalar?</button></a>
+
+        <br />
+      </aside>
+
+      <!--  -->
+
+      <main>
+        <div class="template">
+          <div class="templateHeader"></div>
+          <div class="templatefake"></div>
+          <div class="templatebody" id="area-copiavel">
+            <table
+              cellpadding="0"
+              cellspacing="0"
+              border="0"
+              align="center"
+              style="padding-bottom: 20px"
+              id="assinatura"
+            >
+              <tr>
+                <td>
+                  <table
+                    cellpadding="0"
+                    cellspacing="0"
+                    border="0"
+                    style="font-family: Arial, Helvetica, sans-serif"
+                  >
+                    <tr>
+                      <!-- LOGO -->
+                      <td valign="middle" width="180">
+                        <img
+                          src="https://raw.githubusercontent.com/a-estevam/b4c_assinatura_email/main/img/logo_brain4care.png"
+                          width="160"
+                          alt="brain4care"
+                          style="display: block"
+                        />
+                      </td>
+
+                      <!-- DIVISOR -->
+                      <td width="1" bgcolor="#D9D9D9"></td>
+
+                      <!-- DADOS -->
+                      <td
+                        valign="middle"
+                        width="260"
+                        style="padding-left: 15px"
+                      >
+                        <table cellpadding="0" cellspacing="0" border="0">
+                          <tr>
+                            <td
+                              style="
+                                font-size: 16px;
+                                color: #0085ca;
+                                font-weight: bold;
+                              "
+                              class="nome"
+                            >
+                              NOME
+                            </td>
+                          </tr>
+
+                          <tr>
+                            <td
+                              style="
+                                font-size: 12px;
+                                color: #0085ca;
+                                font-weight: bold;
+                              "
+                              class="cargo"
+                            >
+                              CARGO
+                            </td>
+                          </tr>
+
+                          <tr>
+                            <td height="8"></td>
+                          </tr>
+
+                          <tr>
+                            <td
+                              style="font-size: 12px; color: #666666"
+                              class="email"
+                            >
+                              EMAIL
+                            </td>
+                          </tr>
+
+                          <tr>
+                            <td
+                              style="font-size: 12px; color: #666666"
+                              class="celular"
+                            >
+                              CELULAR
+                            </td>
+                          </tr>
+
+                          <tr>
+                            <td
+                              style="font-size: 12px; color: #666666"
+                              class="local"
+                            >
+                              LOCAL
+                            </td>
+                          </tr>
+                        </table>
+                      </td>
+
+                      <!-- DIVISOR -->
+                      <td width="1" bgcolor="#D9D9D9"></td>
+
+                      <!-- SELO / SITE -->
+                      <td valign="middle" width="150" align="center">
+                        <table cellpadding="0" cellspacing="0" border="0">
+                          <tr>
+                            <td align="center">
+                              <img
+                                src="https://raw.githubusercontent.com/a-estevam/b4c_assinatura_email/main/img/brands.gif"
+                                width="120"
+                                alt="FDA 510(k) Cleared"
+                                style="display: block"
+                              />
+                            </td>
+                          </tr>
+
+                          <tr>
+                            <td height="10"></td>
+                          </tr>
+
+                          <tr>
+                            <td align="center">
+                              <table cellpadding="6" cellspacing="0" border="0">
+                                <tr>
+                                  <td
+                                    align="center"
+                                    style="font-size: 12px; color: #ffffff"
+                                    class="site"
+                                  >
+                                      <a
+                                        href="https://www.brain4.care"
+                                        target="_blank"
+                                        >
+                                          www.brain4.care
+                                        </a>
+                                    
+                                  </td>
+                                </tr>
+                              </table>
+                            </td>
+                          </tr>
+                        </table>
+                      </td>
+                    </tr>
+                  </table>
+                </td>
+              </tr>
+            </table>
+          </div>
+        </div>
+      </main>
+    </div>
+    <script src="./signature.js"></script>
+  </body>
 </html>
